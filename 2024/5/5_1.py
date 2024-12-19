@@ -10,26 +10,6 @@ prohibited_r_neighbours_dict = defaultdict(set)
 larger_items = defaultdict(set)
 
 
-def is_larger(left, right):
-    # check if left is larger than right
-    return left in larger_items[right]
-
-
-def sort(array):
-    n = len(array)
-    for i in range(n):
-        already_sorted = True
-
-        for j in range(n - i - 1):
-            if is_larger(array[j], array[j + 1]):
-                array[j], array[j + 1] = array[j + 1], array[j]
-                already_sorted = False
-        if already_sorted:
-            break
-
-    return array
-
-
 def find_middle_element(update) -> int:
     index = len(update) // 2
     return update[index]
@@ -57,11 +37,6 @@ for line in lines:
 sum = 0
 for update in updates:
     if check_update_order(update):
-        # sum += find_middle_element(update)
-        pass
-    else:
-        sorted_array = sort(update)
-        assert check_update_order(update)
-        sum += find_middle_element(sorted_array)
+        sum += find_middle_element(update)
 
-pass
+print(sum)
